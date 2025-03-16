@@ -1,6 +1,6 @@
 {
   "name": "com.nikunjkareliya.sharedcore",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Shared Core Systems",
   "description": "Reusable game systems including state management and MVC framework.",
   "unity": "2022.3",  
