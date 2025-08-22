@@ -1,12 +1,26 @@
 {
-  "name": "com.nikunjkareliya.sharedcore",
-  "version": "1.0.1",
-  "displayName": "Shared Core Systems",
-  "description": "Reusable game systems including state management and MVC framework.",
-  "unity": "2022.3",  
-  "dependencies": { },
+  "name": "com.nktools.shared-core",
+  "version": "1.0.0",
+  "displayName": "NK Tools - Shared Core",
+  "description": "Reusable core systems and utilities for Unity projects",
+  "unity": "2022.3",
+  "dependencies": {},
+  "keywords": [
+    "mvc",
+    "state-management",
+    "ui-framework",
+    "mobile",
+    "architecture",
+    "utilities"
+  ],
   "author": {
     "name": "Nikunj Kareliya",
-    "email": "nikunj.kareliya@gmail.com"
-  }  
+    "email": "nikunj.kareliya@gmail.com",
+    "url": "https://github.com/nikunjkareliya"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nikunjkareliya/SharedCore.git"
+  },
+  "license": "MIT"
 }
