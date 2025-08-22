@@ -4,7 +4,9 @@
   "displayName": "NK Tools - Shared Core",
   "description": "Reusable core systems and utilities for Unity projects",
   "unity": "2022.3",
-  "dependencies": {},
+  "dependencies": {
+    "com.demigiant.dotween": "https://github.com/Demigiant/dotween.git"
+  },
   "keywords": [
     "mvc",
     "state-management",
@@ -20,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nikunjkareliya/SharedCore.git"
+    "url": "https://github.com/nikunjkareliya/com.nktools.shared-core.git"
   },
   "license": "MIT"
 }
