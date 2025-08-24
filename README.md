@@ -2,7 +2,7 @@
 
 [![Unity Version](https://img.shields.io/badge/Unity-2022.3%2B-blue)](https://unity3d.com/get-unity/download)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Package Version](https://img.shields.io/badge/Version-1.0.0-orange)](package.json)
+[![Package Version](https://img.shields.io/badge/Version-1.1.0-orange)](package.json)
 
 A **production-ready Unity package** providing essential game systems and clean MVC architecture for mobile game development. Build scalable games faster with battle-tested patterns and reusable components.
 
@@ -11,10 +11,11 @@ A **production-ready Unity package** providing essential game systems and clean 
 - 🏗️ **Clean MVC Architecture** - Structured base classes with standardized lifecycle
 - 🎯 **State Management System** - Centralized game state handling with event-driven transitions  
 - 🎨 **UI Panel Navigation** - Automatic panel switching with smooth DOTween animations
-- 📡 **Type-Safe Event System** - Decoupled communication between systems
+- 📡 **Type-Safe Event System** - Decoupled communication with weak reference support and memory leak prevention
 - 💾 **Centralized Data Store** - Global model repository with lazy initialization
 - 📱 **Mobile-Optimized** - Safe area handling and touch-friendly interactions
 - 🔧 **Singleton Utilities** - Thread-safe singleton pattern for MonoBehaviours
+- 🐛 **Debugging Tools** - Built-in debugging and profiling for event system
 - 🚀 **Zero Configuration** - Works out of the box with sensible defaults
 
 ## 📦 Installation
@@ -50,7 +51,8 @@ To install a specific version, append the version tag to the git URL:
 ```
 
 **Available versions:**
-- `#v1.0.0` - Latest stable release
+- `#v1.1.0` - Latest stable release (GameEvent improvements)
+- `#v1.0.0` - Previous stable release
 - `#main` - Development branch (latest features)
 
 ## 🚀 Quick Start
@@ -131,6 +133,48 @@ var gameState = ModelStore.Get<GameStateModel>().CurrentState;
 
 // Available states: Init, Home, LevelSelect, Gameplay, LevelCompleted, etc.
 ```
+
+## 🎯 GameEvent System (v1.1.0)
+
+The enhanced event system provides enterprise-grade features for production Unity applications:
+
+### ✨ New Features
+
+- **🔄 Weak Reference Support** - Automatic cleanup of destroyed Unity objects
+- **🧹 Memory Leak Prevention** - No more memory leaks from unregistered listeners
+- **🐛 Debugging Tools** - Built-in debugging and profiling capabilities
+- **📊 Listener Inspection** - View all registered listeners in Unity Inspector
+- **🛡️ Thread Safety** - Production-ready thread-safe implementation
+- **📝 Detailed Error Context** - Rich error messages with listener information
+
+### 🔧 Usage Examples
+
+```csharp
+// Register a listener (automatically handles Unity object lifecycle)
+SharedEvents.OnGameStateChanged.Register(HandleStateChange);
+
+// Check if listener is registered
+if (SharedEvents.OnGameStateChanged.IsRegistered(HandleStateChange))
+{
+    Debug.Log("Listener is registered");
+}
+
+// Get listener count
+int count = SharedEvents.OnGameStateChanged.ListenerCount;
+
+// Debug information (Unity Editor only)
+#if UNITY_EDITOR
+string debugInfo = SharedEvents.OnGameStateChanged.GetDebugInfo();
+string[] listenerInfo = SharedEvents.OnGameStateChanged.GetListenerInfo();
+#endif
+```
+
+### 🧹 Automatic Cleanup
+
+The system automatically cleans up destroyed Unity objects:
+- **GameObjects** - Automatically unregistered when destroyed
+- **Components** - Automatically unregistered when destroyed
+- **Static Methods** - No cleanup needed (persistent)
 
 ## 🏗️ Architecture Overview
 
@@ -236,6 +280,28 @@ public class AudioManager : GenericSingleton<AudioManager>
     // Your audio management logic
 }
 ```
+
+## 📋 Changelog
+
+### v1.1.0 - GameEvent System Enhancement
+- ✨ **Added weak reference support** for Unity Components and GameObjects
+- 🧹 **Automatic memory cleanup** of destroyed Unity objects
+- 🐛 **Built-in debugging tools** for event system inspection
+- 📊 **Listener inspection** capabilities in Unity Editor
+- 🛡️ **Enhanced thread safety** with listener snapshots
+- 📝 **Detailed error context** with listener information
+- 🔍 **IsRegistered() method** to check listener registration status
+- 📈 **Performance monitoring** with execution and exception counters
+
+### v1.0.1 - Minor Fixes
+- Bug fixes and stability improvements
+
+### v1.0.0 - Initial Release
+- Core MVC architecture
+- State management system
+- UI panel navigation
+- Basic event system
+- Singleton utilities
 
 ## 📄 License
 
