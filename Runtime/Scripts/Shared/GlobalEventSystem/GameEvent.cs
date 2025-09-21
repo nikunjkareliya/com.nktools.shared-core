@@ -52,7 +52,7 @@ namespace Shared.Core
 
     public abstract class GameEventBase<TDelegate> where TDelegate : Delegate
     {
-        private event TDelegate _action;
+        private TDelegate _action;
         private readonly object _lock = new object();
         private readonly List<WeakListenerWrapper> _weakListeners = new List<WeakListenerWrapper>();
         

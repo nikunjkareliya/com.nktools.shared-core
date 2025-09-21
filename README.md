@@ -2,7 +2,7 @@
 
 [![Unity Version](https://img.shields.io/badge/Unity-2022.3%2B-blue)](https://unity3d.com/get-unity/download)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Package Version](https://img.shields.io/badge/Version-1.1.0-orange)](package.json)
+[![Package Version](https://img.shields.io/badge/Version-1.2.0-orange)](package.json)
 
 A **production-ready Unity package** providing essential game systems and clean MVC architecture for mobile game development. Build scalable games faster with battle-tested patterns and reusable components.
 
@@ -10,7 +10,7 @@ A **production-ready Unity package** providing essential game systems and clean 
 
 - 🏗️ **Clean MVC Architecture** - Structured base classes with standardized lifecycle
 - 🎯 **State Management System** - Centralized game state handling with event-driven transitions  
-- 🎨 **UI Panel Navigation** - Automatic panel switching with smooth DOTween animations
+- 🎨 **UI Panel Navigation** - Automatic panel switching with smooth Unity coroutine animations
 - 📡 **Type-Safe Event System** - Decoupled communication with weak reference support and memory leak prevention
 - 💾 **Centralized Data Store** - Global model repository with lazy initialization
 - 📱 **Mobile-Optimized** - Safe area handling and touch-friendly interactions
@@ -51,8 +51,9 @@ To install a specific version, append the version tag to the git URL:
 ```
 
 **Available versions:**
-- `#v1.1.0` - Latest stable release (GameEvent improvements)
-- `#v1.0.0` - Previous stable release
+- `#v1.2.0` - Latest stable release (Zero dependencies, improved reliability)
+- `#v1.1.0` - Previous stable release (GameEvent improvements)
+- `#v1.0.0` - Initial stable release
 - `#main` - Development branch (latest features)
 
 ## 🚀 Quick Start
@@ -218,7 +219,7 @@ graph LR
 - Easy to extend and modify
 
 ### 🎨 **Smooth UX**
-- Built-in DOTween animations
+- Built-in Unity coroutine animations
 - Mobile-optimized interactions
 - Safe area handling for modern devices
 
@@ -249,8 +250,8 @@ public enum GameState
 ## 🛠️ Dependencies
 
 - **Unity 2022.3+** - Long Term Support version
-- **DOTween** - Automatically installed via UPM for smooth animations
-- **No external dependencies** - Self-contained package
+- **Zero external dependencies** - Completely self-contained package
+- **Unity Coroutines** - Built-in animation system for smooth transitions
 
 ## 📚 Examples
 
@@ -283,6 +284,15 @@ public class AudioManager : GenericSingleton<AudioManager>
 
 ## 📋 Changelog
 
+### v1.2.0 - Zero Dependencies & Reliability Improvements
+- 🚀 **Removed DOTween dependency** - Replaced with Unity coroutines for zero external dependencies
+- 🔧 **Fixed compilation errors** - Resolved CS0066 event declaration error in GameEvent.cs
+- 📁 **Added missing meta files** - Fixed Unity import warnings
+- 🔑 **Resolved GUID conflicts** - Updated asset GUIDs to prevent conflicts
+- ✨ **Improved reliability** - Completely self-contained package with no external dependencies
+- 🎨 **Maintained animation quality** - Smooth fade transitions using Unity's built-in coroutines
+- 📚 **Updated documentation** - Comprehensive changelog and version tracking
+
 ### v1.1.0 - GameEvent System Enhancement
 - ✨ **Added weak reference support** for Unity Components and GameObjects
 - 🧹 **Automatic memory cleanup** of destroyed Unity objects
@@ -292,9 +302,6 @@ public class AudioManager : GenericSingleton<AudioManager>
 - 📝 **Detailed error context** with listener information
 - 🔍 **IsRegistered() method** to check listener registration status
 - 📈 **Performance monitoring** with execution and exception counters
-
-### v1.0.1 - Minor Fixes
-- Bug fixes and stability improvements
 
 ### v1.0.0 - Initial Release
 - Core MVC architecture

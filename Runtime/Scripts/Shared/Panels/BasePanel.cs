@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +10,9 @@ namespace Shared.Core
 
         private float _transitionDuration = 0.2f;
         public GameState State;
+        
+        private Coroutine _fadeInCoroutine;
+        private Coroutine _fadeOutCoroutine;
 
         public virtual void ShowPanel()
         {
@@ -20,14 +22,15 @@ namespace Shared.Core
                 return;
             }
             
-            _canvasGroup.DOFade(1f, _transitionDuration).OnComplete(() =>
+            // Stop any existing fade out coroutine
+            if (_fadeOutCoroutine != null)
             {
-                _canvasGroup.blocksRaycasts = true;
-                _canvasGroup.interactable = true;
-
-                OnShowCompleted();
-            });
-
+                StopCoroutine(_fadeOutCoroutine);
+                _fadeOutCoroutine = null;
+            }
+            
+            // Start fade in coroutine
+            _fadeInCoroutine = StartCoroutine(FadeInCoroutine());
         }
         
         public virtual void HidePanel()
@@ -38,14 +41,15 @@ namespace Shared.Core
                 return;
             }
 
-            _canvasGroup.DOFade(0f, _transitionDuration).OnComplete(() =>
+            // Stop any existing fade in coroutine
+            if (_fadeInCoroutine != null)
             {
-                _canvasGroup.blocksRaycasts = false;
-                _canvasGroup.interactable = false;
-
-                OnHideCompleted();
-            });
-
+                StopCoroutine(_fadeInCoroutine);
+                _fadeInCoroutine = null;
+            }
+            
+            // Start fade out coroutine
+            _fadeOutCoroutine = StartCoroutine(FadeOutCoroutine());
         }
 
         // Override this method for custom behavior when the screen is shown
@@ -54,43 +58,46 @@ namespace Shared.Core
         // Override this method for custom behavior when the screen is hidden
         protected virtual void OnHideCompleted() { }
 
-        /*
-        private IEnumerator FadeIn()
+        private IEnumerator FadeInCoroutine()
         {
-            Debug.Log("FadeIn coroutine started");
             float elapsedTime = 0f;
+            float startAlpha = _canvasGroup.alpha;
+            
             while (elapsedTime < _transitionDuration)
             {
-                elapsedTime += Time.deltaTime;
-                _canvasGroup.alpha = Mathf.Lerp(0, 1, elapsedTime / _transitionDuration);
-                Debug.Log($"FadeIn: alpha = {_canvasGroup.alpha}");
+                elapsedTime += Time.unscaledDeltaTime;
+                float progress = elapsedTime / _transitionDuration;
+                _canvasGroup.alpha = Mathf.Lerp(startAlpha, 1f, progress);
                 yield return null;
             }
+            
             _canvasGroup.alpha = 1f;
             _canvasGroup.blocksRaycasts = true;
             _canvasGroup.interactable = true;
-            _routineShow = null;
-            Debug.Log("FadeIn complete, calling OnShow()");
+            _fadeInCoroutine = null;
 
             OnShowCompleted();
         }
 
-        private IEnumerator FadeOut()
+        private IEnumerator FadeOutCoroutine()
         {            
             float elapsedTime = 0f;
+            float startAlpha = _canvasGroup.alpha;
+            
             while (elapsedTime < _transitionDuration)
             {
-                elapsedTime += Time.deltaTime;
-                _canvasGroup.alpha = Mathf.Lerp(1, 0, elapsedTime / _transitionDuration);
+                elapsedTime += Time.unscaledDeltaTime;
+                float progress = elapsedTime / _transitionDuration;
+                _canvasGroup.alpha = Mathf.Lerp(startAlpha, 0f, progress);
                 yield return null;
             }
+            
             _canvasGroup.alpha = 0f;
             _canvasGroup.blocksRaycasts = false;
             _canvasGroup.interactable = false;
-            _routineHide = null;
+            _fadeOutCoroutine = null;
 
             OnHideCompleted();
         }
-        */
     }
 }
