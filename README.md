@@ -2,7 +2,7 @@
 
 [![Unity Version](https://img.shields.io/badge/Unity-2022.3%2B-blue)](https://unity3d.com/get-unity/download)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Package Version](https://img.shields.io/badge/Version-1.2.0-orange)](package.json)
+[![Package Version](https://img.shields.io/badge/Version-1.2.1-orange)](package.json)
 
 A **production-ready Unity package** providing essential game systems and clean MVC architecture for mobile game development. Build scalable games faster with battle-tested patterns and reusable components.
 
@@ -51,7 +51,8 @@ To install a specific version, append the version tag to the git URL:
 ```
 
 **Available versions:**
-- `#v1.2.0` - Latest stable release (Zero dependencies, improved reliability)
+- `#v1.2.1` - Latest stable release (Improved event naming consistency, added Loading state)
+- `#v1.2.0` - Zero dependencies, improved reliability
 - `#v1.1.0` - Previous stable release (GameEvent improvements)
 - `#v1.0.0` - Initial stable release
 - `#main` - Development branch (latest features)
@@ -76,16 +77,16 @@ public class GameManager : BaseController
     protected override void Register()
     {
         // Subscribe to events
-        SharedEvents.OnGameStateChanged.Register(HandleStateChange);
+        SharedEvents.GameStateChanged.Register(HandleGameStateChanged);
     }
 
     protected override void Deregister()
     {
         // Unsubscribe from events
-        SharedEvents.OnGameStateChanged.Unregister(HandleStateChange);
+        SharedEvents.GameStateChanged.Unregister(HandleGameStateChanged);
     }
 
-    private void HandleStateChange(GameState newState)
+    private void HandleGameStateChanged(GameState newState)
     {
         Debug.Log($"Game state changed to: {newState}");
     }
@@ -104,7 +105,7 @@ public class MenuPanel : BasePanel
     private void Awake()
     {
         State = GameState.Home; // Bind to game state
-        SharedEvents.OnPanelRegistered.Execute(this);
+        SharedEvents.PanelRegistered.Execute(this);
     }
 
     protected override void OnShowCompleted()
@@ -116,7 +117,7 @@ public class MenuPanel : BasePanel
     public void OnPlayButtonClicked()
     {
         // Trigger state change - panel will automatically hide/show
-        SharedEvents.OnGameStateChanged.Execute(GameState.Gameplay);
+        SharedEvents.GameStateChanged.Execute(GameState.Gameplay);
     }
 }
 ```
@@ -127,7 +128,7 @@ Control your game flow with the built-in state system:
 
 ```csharp
 // Change game state from anywhere in your code
-SharedEvents.OnGameStateChanged.Execute(GameState.LevelSelect);
+SharedEvents.GameStateChanged.Execute(GameState.LevelSelect);
 
 // Access current state
 var gameState = ModelStore.Get<GameStateModel>().CurrentState;
@@ -152,21 +153,21 @@ The enhanced event system provides enterprise-grade features for production Unit
 
 ```csharp
 // Register a listener (automatically handles Unity object lifecycle)
-SharedEvents.OnGameStateChanged.Register(HandleStateChange);
+SharedEvents.GameStateChanged.Register(HandleGameStateChanged);
 
 // Check if listener is registered
-if (SharedEvents.OnGameStateChanged.IsRegistered(HandleStateChange))
+if (SharedEvents.GameStateChanged.IsRegistered(HandleGameStateChanged))
 {
     Debug.Log("Listener is registered");
 }
 
 // Get listener count
-int count = SharedEvents.OnGameStateChanged.ListenerCount;
+int count = SharedEvents.GameStateChanged.ListenerCount;
 
 // Debug information (Unity Editor only)
 #if UNITY_EDITOR
-string debugInfo = SharedEvents.OnGameStateChanged.GetDebugInfo();
-string[] listenerInfo = SharedEvents.OnGameStateChanged.GetListenerInfo();
+string debugInfo = SharedEvents.GameStateChanged.GetDebugInfo();
+string[] listenerInfo = SharedEvents.GameStateChanged.GetListenerInfo();
 #endif
 ```
 
@@ -261,7 +262,7 @@ Check out the included demo scene at `Runtime/Scenes/SharedCoreDemo.unity` to se
 
 **Trigger state changes:**
 ```csharp
-SharedEvents.OnGameStateChanged.Execute(GameState.Gameplay);
+SharedEvents.GameStateChanged.Execute(GameState.Gameplay);
 ```
 
 **Listen to events:**
@@ -283,6 +284,12 @@ public class AudioManager : GenericSingleton<AudioManager>
 ```
 
 ## 📋 Changelog
+
+### v1.2.1 - Event Naming & Loading State
+- ✏️ **Renamed GameEvents** to follow revised global event naming rules (removed `On` prefixes)
+- 🧭 **Added `Loading` game state** between `Init` and `Home` for clearer flow control
+- 🧾 **Updated SharedEvents API docs** to reflect new handler naming (`HandleGameStateChanged` etc.)
+- 📄 **Refreshed README** with updated examples and version badge
 
 ### v1.2.0 - Zero Dependencies & Reliability Improvements
 - 🚀 **Removed DOTween dependency** - Replaced with Unity coroutines for zero external dependencies
