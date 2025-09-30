@@ -14,39 +14,39 @@ namespace Shared.Core
         private GameStateModel _gameStateModel;
 
         protected override void Init()
-        {            
+        {
             _gameStateModel = ModelStore.Get<GameStateModel>();
         }
 
         protected override void Register()
-        {            
-            SharedEvents.OnGameStateChanged.Register(ChangeState);
+        {
+            SharedEvents.GameStateChanged.Register(HandleGameStateChanged);
         }
 
         protected override void Deregister()
-        {            
-            SharedEvents.OnGameStateChanged.Unregister(ChangeState);
+        {
+            SharedEvents.GameStateChanged.Unregister(HandleGameStateChanged);
         }
-        
+
         private IEnumerator Start()
         {
             yield return new WaitForSeconds(0.5f);
-            ChangeState(_initialState);
+            HandleGameStateChanged(_initialState);
         }
 
-        private void ChangeState(GameState gameState)
-        {            
+        private void HandleGameStateChanged(GameState gameState)
+        {
             // Catch previous state before changing to new state
             _previousState = _currentState;
             _gameStateModel.PreviousState = _currentState;
 
-            SharedEvents.OnGameStateExited.Execute(gameState);                
-            
+            SharedEvents.GameStateExited.Execute(gameState);
+
             _currentState = gameState;
             _gameStateModel.CurrentState = gameState;
 
-            SharedEvents.OnGameStateEntered.Execute(gameState);            
-            SharedEvents.OnPanelShow.Execute(gameState);            
+            SharedEvents.GameStateEntered.Execute(gameState);
+            SharedEvents.PanelShow.Execute(gameState);
             Debug.Log($"<color=cyan>STATE CHANGED -> {gameState}</color>");
         }
 
@@ -70,13 +70,13 @@ namespace Shared.Core
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                SharedEvents.OnGameStateChanged.Execute(GameState.Home);
+                SharedEvents.GameStateChanged.Execute(GameState.Home);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                SharedEvents.OnGameStateChanged.Execute(GameState.Gameplay);                
+                SharedEvents.GameStateChanged.Execute(GameState.Gameplay);
             }
-            
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log($"Current State -> {_currentState}");

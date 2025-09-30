@@ -1,11 +1,10 @@
 {
   "name": "com.nktools.shared-core",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "displayName": "NK Tools - Shared Core",
   "description": "Reusable core systems and utilities for Unity projects",
   "unity": "2022.3",
-  "dependencies": {
-  },
+  "dependencies": {},
   "keywords": [
     "mvc",
     "state-management",

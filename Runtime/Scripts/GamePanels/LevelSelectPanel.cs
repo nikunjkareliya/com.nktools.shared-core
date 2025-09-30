@@ -1,13 +1,12 @@
-using Shared.Core;
 using UnityEngine;
 
-namespace GameXYZ
+namespace Shared.Core
 {
     public class LevelSelectPanel : BasePanel
     {
         private void Awake()
         {
-            SharedEvents.OnPanelRegistered.Execute(this);
+            SharedEvents.PanelRegistered.Execute(this);
         }
 
         public override void ShowPanel()
