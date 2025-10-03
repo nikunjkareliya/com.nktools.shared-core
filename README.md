@@ -2,15 +2,17 @@
 
 [![Unity Version](https://img.shields.io/badge/Unity-2022.3%2B-blue)](https://unity3d.com/get-unity/download)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Package Version](https://img.shields.io/badge/Version-1.2.1-orange)](package.json)
+[![Package Version](https://img.shields.io/badge/Version-1.3.0-orange)](package.json)
 
 A **production-ready Unity package** providing essential game systems and clean MVC architecture for mobile game development. Build scalable games faster with battle-tested patterns and reusable components.
 
 ## ✨ Features
 
 - 🏗️ **Clean MVC Architecture** - Structured base classes with standardized lifecycle
-- 🎯 **State Management System** - Centralized game state handling with event-driven transitions  
+- 🎯 **State Management System** - Centralized game state handling with event-driven transitions
 - 🎨 **UI Panel Navigation** - Automatic panel switching with smooth Unity coroutine animations
+- 🖼️ **UI Setup Wizard** - Visual editor tool to generate and manage MainUI prefabs with panel navigation system
+- 🎬 **Scene Switcher** - Quick scene navigation tool for Build Settings scenes with one-click switching
 - 📡 **Type-Safe Event System** - Decoupled communication with weak reference support and memory leak prevention
 - 💾 **Centralized Data Store** - Global model repository with lazy initialization
 - 📱 **Mobile-Optimized** - Safe area handling and touch-friendly interactions
@@ -51,9 +53,10 @@ To install a specific version, append the version tag to the git URL:
 ```
 
 **Available versions:**
-- `#v1.2.1` - Latest stable release (Improved event naming consistency, added Loading state)
+- `#v1.3.0` - Latest stable release (UI Setup Wizard, Editor assembly definition)
+- `#v1.2.1` - Improved event naming consistency, added Loading state
 - `#v1.2.0` - Zero dependencies, improved reliability
-- `#v1.1.0` - Previous stable release (GameEvent improvements)
+- `#v1.1.0` - GameEvent improvements
 - `#v1.0.0` - Initial stable release
 - `#main` - Development branch (latest features)
 
@@ -135,6 +138,45 @@ var gameState = ModelStore.Get<GameStateModel>().CurrentState;
 
 // Available states: Init, Home, LevelSelect, Gameplay, LevelCompleted, etc.
 ```
+
+## 🎨 UI Setup Wizard (v1.3.0)
+
+Generate production-ready MainUI prefabs with a visual editor tool.
+
+**Access:** `Tools > NK Tools > UI Setup Wizard`
+
+### Key Features
+- **Aspect Ratio Presets** - Portrait (9:16, 9:20, 3:4) and Landscape (16:9, 20:9, 4:3)
+- **Dynamic Panels** - Add built-in panels (Home, Gameplay, etc.) or custom panel scripts
+- **Safe Updates** - Modify existing prefabs without losing manual changes
+- **Sync Mode** - Keep prefabs perfectly synced with wizard configuration
+- **Preset System** - Save/load configurations for different platforms
+
+### Quick Usage
+1. Open: `Tools > NK Tools > UI Setup Wizard`
+2. Select aspect ratio (Portrait/Landscape/Custom)
+3. Configure panels (built-in or custom)
+4. Click "Generate Prefab"
+5. MainUI prefab created at `Assets/Prefabs/UI/MainUIPrefab.prefab`
+
+**📖 Full Documentation:** See `Editor/Documentation/UISetupWizard_README.md` for complete guide with workflows, troubleshooting, and best practices.
+
+## 🎬 Scene Switcher
+
+Quick scene navigation editor tool for Build Settings scenes.
+
+**Access:** `Tools > NK Tools > Scene Switcher`
+
+### Features
+- **Scrollable Scene List** - View all scenes from Build Settings
+- **One-Click Switching** - Instantly switch to any scene in your build
+- **Safe Scene Loading** - Prompts to save unsaved changes before switching
+- **Scene Indexing** - Shows scene index and name for easy reference
+
+### Quick Usage
+1. Open: `Tools > NK Tools > Scene Switcher`
+2. Select any scene from the scrollable list
+3. Scene switches automatically (with save prompt if needed)
 
 ## 🎯 GameEvent System (v1.1.0)
 
@@ -284,6 +326,16 @@ public class AudioManager : GenericSingleton<AudioManager>
 ```
 
 ## 📋 Changelog
+
+### v1.3.0 - UI Setup Wizard & Editor Tools
+- 🎨 **UI Setup Wizard** - Visual editor tool for MainUI prefab generation
+- 📦 **Editor Assembly Definition** - Proper package structure with Shared.Core.Editor.asmdef
+- 🖼️ **Aspect Ratio Presets** - Portrait, Landscape, and Custom resolution support
+- ⚙️ **Dynamic Panel Management** - Add, update, and remove panels visually
+- 🔒 **Safe Update Mode** - Modify prefabs without data loss
+- 🔄 **Sync Mode** - Perfect prefab synchronization with wizard
+- 💾 **Preset System** - Save/load configurations as JSON
+- 📚 **Comprehensive Documentation** - Full wizard guide in Editor/Documentation/
 
 ### v1.2.1 - Event Naming & Loading State
 - ✏️ **Renamed GameEvents** to follow revised global event naming rules (removed `On` prefixes)
