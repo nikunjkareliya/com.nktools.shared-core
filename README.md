@@ -2,7 +2,7 @@
 
 [![Unity Version](https://img.shields.io/badge/Unity-2022.3%2B-blue)](https://unity3d.com/get-unity/download)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Package Version](https://img.shields.io/badge/Version-1.3.0-orange)](package.json)
+[![Package Version](https://img.shields.io/badge/Version-1.3.1-orange)](package.json)
 
 A **production-ready Unity package** providing essential game systems and clean MVC architecture for mobile game development. Build scalable games faster with battle-tested patterns and reusable components.
 
@@ -53,7 +53,8 @@ To install a specific version, append the version tag to the git URL:
 ```
 
 **Available versions:**
-- `#v1.3.0` - Latest stable release (UI Setup Wizard, Editor assembly definition)
+- `#v1.3.1` - Latest stable release (Scene Switcher, UI Setup Wizard)
+- `#v1.3.0` - UI Setup Wizard, Editor assembly definition
 - `#v1.2.1` - Improved event naming consistency, added Loading state
 - `#v1.2.0` - Zero dependencies, improved reliability
 - `#v1.1.0` - GameEvent improvements
@@ -326,6 +327,12 @@ public class AudioManager : GenericSingleton<AudioManager>
 ```
 
 ## 📋 Changelog
+
+### v1.3.1 - Scene Switcher Tool
+- 🎬 **Scene Switcher** - Quick scene navigation editor window
+- 📂 **Build Settings Integration** - One-click switching between all scenes in build
+- 💾 **Safe Scene Loading** - Automatic save prompts before switching
+- 📋 **Scene Indexing** - View scene index and name in scrollable list
 
 ### v1.3.0 - UI Setup Wizard & Editor Tools
 - 🎨 **UI Setup Wizard** - Visual editor tool for MainUI prefab generation

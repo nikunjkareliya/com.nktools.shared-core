@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Unity package (com.nktools.shared-core v1.3.0) providing MVC architecture, state management, event system, and UI Setup Wizard for Unity 2022.3+ games. Zero external dependencies.
+Unity package (com.nktools.shared-core v1.3.1) providing MVC architecture, state management, event system, UI Setup Wizard, and Scene Switcher for Unity 2022.3+ games. Zero external dependencies.
 
 ## Core Architecture
 

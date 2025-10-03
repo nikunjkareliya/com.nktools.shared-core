@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.1] - 2025-01-03
+
+### Added
+- **Scene Switcher** - Editor window for quick scene navigation from Build Settings
+  - Accessible via `Tools > NK Tools > Scene Switcher`
+  - Displays all scenes from Build Settings in scrollable list
+  - One-click scene switching with automatic save prompts
+  - Shows scene index and name for easy reference
+
 ## [1.3.0] - 2025-01-02
 
 ### Added
