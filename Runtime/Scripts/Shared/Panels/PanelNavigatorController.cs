@@ -39,11 +39,15 @@ namespace Shared.Core
             if (_panels.ContainsKey(gameState))
             {
                 BasePanel panel = _panels[gameState];
-                //                 
-                foreach (KeyValuePair<GameState, BasePanel> entry in _panels)
+                
+                // Only hide other panels if the new one is NOT an overlay
+                if (!panel.IsOverlay)
                 {
-                    BasePanel basePanel = entry.Value;
-                    basePanel.HidePanel();
+                    foreach (KeyValuePair<GameState, BasePanel> entry in _panels)
+                    {
+                        BasePanel basePanel = entry.Value;
+                        basePanel.HidePanel();
+                    }
                 }
 
                 _currentPanel = panel;

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] - 2025-01-08
+
+### Added
+- **Overlay Panel Support** - New `IsOverlay` flag in `BasePanel` allows panels to display on top of existing screens without hiding them (e.g., Popups, Pause Screens, Level Failed).
+- **Non-Destructive Navigation** - Updated `PanelNavigatorController` to respect the `IsOverlay` flag, preserving the background UI when opening an overlay panel.
+
 ## [1.3.1] - 2025-01-03
 
 ### Added
