@@ -8,6 +8,9 @@ namespace Shared.Core
     {
         [SerializeField] private CanvasGroup _canvasGroup;
 
+        [Tooltip("If true, opening this panel won't close the previous one.")]
+        public bool IsOverlay = false;
+
         private float _transitionDuration = 0.2f;
         public GameState State;
         
