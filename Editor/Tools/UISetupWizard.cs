@@ -21,6 +21,7 @@ namespace Shared.Core.Editor
         public PanelType panelType = PanelType.Custom;
         public string customScriptName = "";
         public GameState gameState = GameState.None;
+        public bool isOverlay = false;
     }
 
     public enum PanelType
@@ -408,6 +409,7 @@ namespace Shared.Core.Editor
                 }
 
                 _panels[i].gameState = (GameState)EditorGUILayout.EnumPopup("State", _panels[i].gameState);
+                _panels[i].isOverlay = EditorGUILayout.Toggle("Is Overlay", _panels[i].isOverlay);
 
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.Space(5);
@@ -741,6 +743,7 @@ namespace Shared.Core.Editor
                 SerializedObject so = new SerializedObject(panelScript);
                 so.FindProperty("_canvasGroup").objectReferenceValue = canvasGroup;
                 so.FindProperty("State").enumValueIndex = (int)config.gameState;
+                so.FindProperty("IsOverlay").boolValue = config.isOverlay;
                 so.ApplyModifiedProperties();
             }
         }

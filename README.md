@@ -2,7 +2,7 @@
 
 [![Unity Version](https://img.shields.io/badge/Unity-2022.3%2B-blue)](https://unity3d.com/get-unity/download)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Package Version](https://img.shields.io/badge/Version-1.3.1-orange)](package.json)
+[![Package Version](https://img.shields.io/badge/Version-1.4.1-orange)](package.json)
 
 A **production-ready Unity package** providing essential game systems and clean MVC architecture for mobile game development. Build scalable games faster with battle-tested patterns and reusable components.
 
@@ -53,6 +53,7 @@ To install a specific version, append the version tag to the git URL:
 ```
 
 **Available versions:**
+- `#v1.4.1` - UI Setup Wizard overlay support
 - `#v1.3.1` - Latest stable release (Scene Switcher, UI Setup Wizard)
 - `#v1.3.0` - UI Setup Wizard, Editor assembly definition
 - `#v1.2.1` - Improved event naming consistency, added Loading state
@@ -149,6 +150,7 @@ Generate production-ready MainUI prefabs with a visual editor tool.
 ### Key Features
 - **Aspect Ratio Presets** - Portrait (9:16, 9:20, 3:4) and Landscape (16:9, 20:9, 4:3)
 - **Dynamic Panels** - Add built-in panels (Home, Gameplay, etc.) or custom panel scripts
+- **Overlay Panels** - Configure panels as overlays (popups) to appear on top of other screens
 - **Safe Updates** - Modify existing prefabs without losing manual changes
 - **Sync Mode** - Keep prefabs perfectly synced with wizard configuration
 - **Preset System** - Save/load configurations for different platforms
@@ -327,6 +329,11 @@ public class AudioManager : GenericSingleton<AudioManager>
 ```
 
 ## 📋 Changelog
+
+### v1.4.1 - UI Setup Wizard Enhancements
+- 🖼️ **Overlay Panel Support** - Configure panels as overlays directly in the UI Setup Wizard
+- 🛠️ **Wizard UI Updates** - Added toggle for overlay configuration in panel list
+- ⚡ **Workflow Improvement** - No need to manually configure overlay settings in inspector
 
 ### v1.3.1 - Scene Switcher Tool
 - 🎬 **Scene Switcher** - Quick scene navigation editor window
