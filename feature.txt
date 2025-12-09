@@ -1,0 +1,6 @@
+
+Current flow:
+1. GameStateController changes state -> Fires SharedEvents.PanelShow. 2. PanelNavigatorController receives event. 3. It finds the panel mapped to that state, shows it, and hides others.
+
+I want a feature, which enables to show screen over other screen.
+for example, when level failed screen is active then I want to give developer option weather to show it over gameplay screen or show only level failed. Did you understand the feature?
